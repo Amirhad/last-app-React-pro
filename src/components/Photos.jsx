@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
 export const Photos = () => {
-  const selectAlbumsId = useSelector((state) => state.selectAlbumsId);
-  const photos = useSelector((state) => state.photos);
+  const selectAlbumsId = useSelector((state) => state.albums.selectAlbumsId);
+  const photos = useSelector((state) => state.photos.photos);
 
   const filter = photos.filter((todo) => todo.albumId === selectAlbumsId);
 
