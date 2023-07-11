@@ -1,26 +1,26 @@
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
- import { useDispatch } from "react-redux";
-import { selectId } from "../redux/action";
 
 
 export const Albums = () => {
   const albums = useSelector((state) => state.albums.albums);
-  
-  const [state, indexState] = useState(null)
-  const dispatch = useDispatch();
-  const selectUserId = (item) => {
-    dispatch(selectId(item.id));
-    };
+
+  const [state, indexState] = useState(null);
+
   return (
     <div className="users">
       <ul>
-        {albums.map((item,index) => {
+        {albums.map((item, index) => {
           return (
-            <li className={state === index ? 'selected' : ''} onClick={() =>indexState(index)} >
-            <div onClick={()=>selectUserId(item)} className="user-name">{item.id}:albums</div>
-           </li>
+            <li
+              className={state === index ? "selected" : ""}
+              onClick={() => indexState(index)}
+            >
+              <Link to={`/${item.id}`}>
+                <div className="user-name">{item.id}:albums</div>
+              </Link>
+            </li>
           );
         })}
       </ul>
