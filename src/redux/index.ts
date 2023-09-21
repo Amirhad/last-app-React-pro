@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import  { createLogger } from "redux-logger";
 import thunk from "redux-thunk";
-import { albums } from "./albums/albums";
-import { photos } from "./photos/photos";
+import { albums } from "./albums/albumsReducer";
+import { photos } from "./photos/photosReducer";
 
 const logger = createLogger({
     diff:true,
@@ -16,3 +16,7 @@ const rootState = combineReducers({
 })
 
 export const store = createStore(rootState, applyMiddleware(thunk, logger))
+
+
+export type RootState = ReturnType<typeof store.getState> 
+export type AppDispatch = typeof store.dispatch

@@ -1,16 +1,18 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { loadAlbums, loadPhotos } from "../redux/action";
+import React, { useEffect } from "react";
 import { Albums } from "./Albums";
 import { Photos } from "./Photos";
 import { Routes, Route } from "react-router-dom";
+import { useTypedDispatch } from "../hooks";
+import { useActions } from "../hooks/useActions";
 
-export const App = () => {
-  const dispatch = useDispatch();
+export const App: React.FC = () => {
 
-  useEffect(() => {
-    dispatch(loadAlbums());
-    dispatch(loadPhotos());
+
+const {loadAlbums,loadPhotos} = useActions()
+
+  useEffect((): void => {
+    loadAlbums();
+    loadPhotos();
   }, []);
 
   return (

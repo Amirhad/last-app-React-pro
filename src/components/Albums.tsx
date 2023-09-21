@@ -1,17 +1,29 @@
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { useTypedSelector } from "../hooks";
 
 
-export const Albums = () => {
-  const albums = useSelector((state) => state.albums.albums);
+
+interface AlbumsInterface{
+  userId: number
+  id:number
+  title:string
+}
+
+
+export const Albums:React.FC = () => {
+  // @ts-ignore
+  const albums = useTypedSelector((state) => state.albums.albums);
+
+console.log(albums);
 
   const [state, indexState] = useState(null);
+
 
   return (
     <div className="users">
       <ul>
-        {albums.map((item, index) => {
+        {albums.map((item:AlbumsInterface, index:any) => {
           return (
             <li
               className={state === index ? "selected" : ""}
